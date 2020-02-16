@@ -89,19 +89,16 @@ def build_model():
     return model
 
 # Get results and add them to a dataframe.
-def get_results(y_test, y_pred):
-    results = pd.DataFrame(columns=['Category', 'f_score', 'precision', 'recall'])
-    num = 0
-    for cat in y_test.columns:
-        precision, recall, f_score, support = precision_recall_fscore_support(y_test[cat], y_pred[:,num], average='weighted')
-        results.set_value(num+1, 'Category', cat)
-        results.set_value(num+1, 'f_score', f_score)
-        results.set_value(num+1, 'precision', precision)
-        results.set_value(num+1, 'recall', recall)
-        num += 1
-    print('Aggregated f_score:', results['f_score'].mean())
-    print('Aggregated precision:', results['precision'].mean())
-    print('Aggregated recall:', results['recall'].mean())
+def get_classification_report(y_test, y_pred):
+    """
+    To get F1 score,precision for each category
+    Param:
+    y_test - actual y values 
+    y_pred - predicted y values
+    """
+    for ind,cat in enumerate(y_test.keys()): 
+        print("Classification report for {}".format(cat))
+        print(classification_report(y_test.iloc[:,ind], y_pred[:,ind]))
     #return results
 
 def evaluate_model(model, X_test, Y_test, category_names):
@@ -116,7 +113,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
     """
     # Get results and add them to a dataframe.
     y_pred = model.predict(X_test)
-    get_results(Y_test, y_pred)
+    get_classification_report(Y_test, y_pred)
     #print(classification_report(Y_test, y_pred, target_names=category_names))
     
 
