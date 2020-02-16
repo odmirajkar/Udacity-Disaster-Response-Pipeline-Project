@@ -48,3 +48,7 @@ This porject has three parts
 3. Go to http://0.0.0.0:3001/
 
 ### screenshots:
+![Intro Pic](screenshots/one.png)
+![Bar charts Pic](screenshots/two.png)
+![Bar charts Pic](screenshots/three.png)
+
