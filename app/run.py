@@ -117,7 +117,7 @@ def index():
             ],
 
             'layout': {
-                'title': 'Top Five Categories for direct messages',
+                'title': 'Top Five Categories for news messages',
                 'yaxis': {
                     'title': "Count"
                 },
